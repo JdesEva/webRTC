@@ -12,12 +12,19 @@ class webRTC extends EventEmitter {
     this.romoteVideoTrack = []
   }
 
-  // 登录 加入频道
+  /**
+   * 登录 加入频道
+   * @param {String} APPID   声网APPID
+   * @param {String} channel  频道号
+   * @param {String} token
+   */
   async login (APPID, channel, token = null) {
     this.uid = await this.client.join(APPID, channel, token, null)
   }
 
-  // 发布音视频流
+  /**
+   * 发布音视频流
+   */
   async publishStream () {
     this.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack()
     this.localVideoTrack = await AgoraRTC.createCameraVideoTrack()
@@ -25,13 +32,25 @@ class webRTC extends EventEmitter {
     this.emit('published-stream', this.localVideoTrack, this.localAudioTrack)
   }
 
-  // 取消发布音视频
+  /**
+   * 取消发布本地音视频轨道
+   */
   async unpublishStream () {
     await this.client.unpublish([this.localAudioTrack, this.localVideoTrack]) && await this.client.unpublish()
     this.emit('unpublished-stream')
   }
 
-  // webRTC事件
+  /**
+   * webRTC事件
+   *
+   * 事件列表
+   *
+   * - user-published 发布本地音视频轨道
+   * - user-unpublished  取消发布本地音视频轨道
+   * - network-quality   网络上下行质量报告回调;用户加入频道后，SDK 会每 1 秒触发一次该回调，报告本地用户当前的上行和下行网络质量;
+   * - exception  频道内 SDK 监测出的异常事件
+   * - user-joined  远端用户或主播加入频道回调
+   */
   async subscribeRTCEvents () {
     this.client.on('user-published', async (user, mediaType) => {
       await this.client.subscribe(user, mediaType) // 订阅远端用户
@@ -75,24 +94,36 @@ class webRTC extends EventEmitter {
     })
   }
 
-  // 手动取消订阅远端流
+  /**
+   * 取消订阅远端用户的音视频轨道
+   * @param {Object} user 远端用户对象
+   * @param {String} type 远端流类型  "video" | "audio"
+   */
   async unsubscribeStream (user, type = undefined) {
     this.client.unsubscribe(user, type)
   }
 
-  // 是否关闭本地视频采集
+  /**
+   * 启用/禁用该轨道
+   * @param {Boolean} enabled  是否关闭
+   */
   async isVideo (enabled) {
     const videoTrack = await AgoraRTC.createCameraVideoTrack()
     await videoTrack.setEnabled(enabled)
   }
 
-  // 调整本地音量
+  /**
+   * 调整本地音量
+   * @param {Number} volume   音量大小
+   */
   async setLocalVolume (volume) {
     const localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack()
     localAudioTrack.setVolume(volume)
   }
 
-  // 离开频道
+  /**
+   * 退出
+   */
   async logout () {
     this.localAudioTrack && this.localAudioTrack.stop() && this.localAudioTrack.close()
     this.localVideoTrack && this.localVideoTrack.stop() && this.localVideoTrack.close()
