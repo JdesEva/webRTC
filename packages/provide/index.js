@@ -102,7 +102,7 @@ class webRTC extends EventEmitter {
 
     this.client.on('user-joined', (...args) => {
       console.log('user-joined', args)
-      this.emit('exception', ...args)
+      this.emit('user-joined', ...args)
     })
   }
 
