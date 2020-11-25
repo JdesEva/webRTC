@@ -8,9 +8,9 @@ import nodePolyfills from 'rollup-plugin-node-polyfills'
 const env = process.env.NODE_ENV
 
 export default {
-  external: ['events', 'web_rtc'], // 外部依赖
+  external: ['events', 'agora-rtc-sdk-ng'], // 外部依赖
   globals: {
-    AgoraRTC: 'web_rtc',
+    AgoraRTC: 'agora-rtc-sdk-ng',
     EventEmitter: 'events'
   },
   plugins: [
