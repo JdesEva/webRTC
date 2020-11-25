@@ -19,25 +19,37 @@ class webRTC extends EventEmitter {
    * @param {String} token
    */
   async login (APPID, channel, token = null) {
-    this.uid = await this.client.join(APPID, channel, token, null)
+    try {
+      this.uid = await this.client.join(APPID, channel, token, null)
+    } catch (e) {
+      throw new Error(e)
+    }
   }
 
   /**
    * 发布音视频流
    */
   async publishStream () {
-    this.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack()
-    this.localVideoTrack = await AgoraRTC.createCameraVideoTrack()
-    this.localAudioTrack && this.client.publish([this.localAudioTrack, this.localVideoTrack])
-    this.emit('published-stream', this.localVideoTrack, this.localAudioTrack)
+    try {
+      this.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack()
+      this.localVideoTrack = await AgoraRTC.createCameraVideoTrack()
+      this.localAudioTrack && this.localVideoTrack && this.client.publish([this.localAudioTrack, this.localVideoTrack])
+      this.emit('published-stream', this.localVideoTrack, this.localAudioTrack)
+    } catch (e) {
+      throw new Error(e)
+    }
   }
 
   /**
    * 取消发布本地音视频轨道
    */
   async unpublishStream () {
-    await this.client.unpublish([this.localAudioTrack, this.localVideoTrack]) && await this.client.unpublish()
-    this.emit('unpublished-stream')
+    try {
+      await this.client.unpublish([this.localAudioTrack, this.localVideoTrack]) && await this.client.unpublish()
+      this.emit('unpublished-stream')
+    } catch (e) {
+      throw new Error(e)
+    }
   }
 
   /**
@@ -100,7 +112,11 @@ class webRTC extends EventEmitter {
    * @param {String} type 远端流类型  "video" | "audio"
    */
   async unsubscribeStream (user, type = undefined) {
-    this.client.unsubscribe(user, type)
+    try {
+      await this.client.unsubscribe(user, type)
+    } catch (e) {
+      throw new Error(e)
+    }
   }
 
   /**
@@ -108,8 +124,12 @@ class webRTC extends EventEmitter {
    * @param {Boolean} enabled  是否关闭
    */
   async isVideo (enabled) {
-    const videoTrack = await AgoraRTC.createCameraVideoTrack()
-    await videoTrack.setEnabled(enabled)
+    try {
+      const videoTrack = await AgoraRTC.createCameraVideoTrack()
+      await videoTrack.setEnabled(enabled)
+    } catch (e) {
+      throw new Error(e)
+    }
   }
 
   /**
@@ -117,20 +137,28 @@ class webRTC extends EventEmitter {
    * @param {Number} volume   音量大小
    */
   async setLocalVolume (volume) {
-    const localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack()
-    localAudioTrack.setVolume(volume)
+    try {
+      const localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack()
+      localAudioTrack.setVolume(volume)
+    } catch (e) {
+      throw new Error(e)
+    }
   }
 
   /**
    * 退出
    */
   async logout () {
-    this.localAudioTrack && this.localAudioTrack.stop() && this.localAudioTrack.close()
-    this.localVideoTrack && this.localVideoTrack.stop() && this.localVideoTrack.close()
-    this.romoteAudioTrack = []
-    this.romoteVideoTrack = []
-    await this.unpublishStream()
-    await this.client.leave()
+    try {
+      this.localAudioTrack && this.localAudioTrack.stop() && this.localAudioTrack.close()
+      this.localVideoTrack && this.localVideoTrack.stop() && this.localVideoTrack.close()
+      this.romoteAudioTrack = []
+      this.romoteVideoTrack = []
+      await this.unpublishStream()
+      await this.client.leave()
+    } catch (e) {
+      throw new Error(e)
+    }
   }
 }
 
