@@ -54,7 +54,6 @@
   "typings": "index.d.ts",
   "dependencies": {
     "agora-rtc-sdk-ng": "^4.1.1",
-    "events": "^3.2.0",
-    "web_rtc": "^2.0.0"
+    "events": "^3.2.0"
   }
 }

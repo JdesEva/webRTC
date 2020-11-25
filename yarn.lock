@@ -3979,11 +3979,6 @@ vlq@^0.2.2:
   resolved "https://registry.npm.taobao.org/vlq/download/vlq-0.2.3.tgz#8f3e4328cf63b1540c0d67e1b2778386f8975b26"
   integrity sha1-jz5DKM9jsVQMDWfhsneDhviXWyY=
 
-web_rtc@^2.0.0:
-  version "2.0.0"
-  resolved "http://47.98.112.234:4873/web_rtc/-/web_rtc-2.0.0.tgz#c7201c881b26b09e5c86440d56255ea9ed4a6313"
-  integrity sha512-vvSwRGZA1BI7aNfok2LE6o25qKs6IM36afrbkxRhX3zK8pRYaxIkFTy4kmHFt+yDVOMEjY0+k1hve0b1zAlYOw==
-
 which-pm-runs@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npm.taobao.org/which-pm-runs/download/which-pm-runs-1.0.0.tgz#670b3afbc552e0b55df6b7780ca74615f23ad1cb"

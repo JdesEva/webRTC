@@ -24,7 +24,7 @@ export interface RTCInstance {
     romoteVideoTrack: Array<Track>;
     login(APPID: string, channel: string, token?: string): Promise<string>;
     publishStream(): Promise<Track>;
-    unpublishStream(): Promise<any>;
+    unpublishStream(): Promise<void>;
     subscribeRTCEvents(): Promise<RTCEvents>;
     unsubscribeStream(user: userInstance, type: string): Promise<void>;
     isVideo(enabled: boolean): Promise<void>;
