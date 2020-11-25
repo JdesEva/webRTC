@@ -1,27 +1,35 @@
+export declare type SDK_MODE = "live" | "rtc";
+
+export declare type SDK_CODEC = "h264" | "vp8";
+
 export interface RTCInstanceOptions {
-    mode?: string;
-    codec?: string;
+    mode?: SDK_MODE;
+    codec?: SDK_CODEC;
 }
 
-export interface streamInstance { }
+export interface Track { }
+
+export interface userInstance { }
+
+export interface RTCEvents { }
 
 
 export interface RTCInstance {
     options: RTCInstanceOptions;
     client: RTCInstance;
-    login(APPID: string): Promise<R>;
-    joinChannel(channel: string, uid?: string, token?: string): Promise<R>;
-    leave(): Promise<R>;
-    getDevices(): Promise<R>;
-    createStream(options?: object): Promise<R>;
-    playLocalStream(): Promise<R>;
-    publishStream(): Promise<R>;
-    unPublishStream(): Promise<R>;
-    subscribe(romoteStream: streamInstance, options?: object): Promise<R>;
-    unSubscribe(romoteStream: streamInstance): Promise<R>;
-    eventsEmitter(): void;
-    on(eventName: string, callback: Function): void;
-    off(eventName: string, callback: Function): void;
+    localAudioTrack: Track;
+    localVideoTrack: Track;
+    uid: string;
+    romoteAudioTrack: Array<Track>;
+    romoteVideoTrack: Array<Track>;
+    login(APPID: string, channel: string, token?: string): Promise<string>;
+    publishStream(): Promise<Track>;
+    unpublishStream(): Promise<any>;
+    subscribeRTCEvents(): Promise<RTCEvents>;
+    unsubscribeStream(user: userInstance, type: string): Promise<void>;
+    isVideo(enabled: boolean): Promise<void>;
+    setLocalVolume(volume: number): Promise<void>;
+    logout(): Promise<void>;
 }
 
 
