@@ -1,4 +1,4 @@
-import AgoraRTC from 'agora-rtc-sdk-ng'
+import AgoraRTC from 'web_rtc'
 import EventEmitter from 'events'
 
 class webRTC extends EventEmitter {

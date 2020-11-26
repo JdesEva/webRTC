@@ -890,11 +890,6 @@ aggregate-error@^3.0.0:
     clean-stack "^2.0.0"
     indent-string "^4.0.0"
 
-agora-rtc-sdk-ng@^4.1.1:
-  version "4.1.1"
-  resolved "http://47.98.112.234:4873/agora-rtc-sdk-ng/-/agora-rtc-sdk-ng-4.1.1.tgz#b0115c1f81587e2b765a2832e38284987218954c"
-  integrity sha512-bS6IOPtmgnbJ+OLcJDXrISl0Ot/5SI2kCJ2Hra2KEktf9bq8Qx3S4OcIQoOqRZwXvD8xKqK9iBekIgP4Dy3BLw==
-
 ajv@^6.10.0, ajv@^6.10.2, ajv@^6.12.4:
   version "6.12.6"
   resolved "https://registry.npm.taobao.org/ajv/download/ajv-6.12.6.tgz?cache=0&sync_timestamp=1603561486770&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fajv%2Fdownload%2Fajv-6.12.6.tgz#baf5a62e802b07d977034586f8c3baf5adf26df4"
@@ -3978,6 +3973,11 @@ vlq@^0.2.2:
   version "0.2.3"
   resolved "https://registry.npm.taobao.org/vlq/download/vlq-0.2.3.tgz#8f3e4328cf63b1540c0d67e1b2778386f8975b26"
   integrity sha1-jz5DKM9jsVQMDWfhsneDhviXWyY=
+
+web_rtc@^2.0.0:
+  version "2.0.0"
+  resolved "http://47.98.112.234:4873/web_rtc/-/web_rtc-2.0.0.tgz#c7201c881b26b09e5c86440d56255ea9ed4a6313"
+  integrity sha512-vvSwRGZA1BI7aNfok2LE6o25qKs6IM36afrbkxRhX3zK8pRYaxIkFTy4kmHFt+yDVOMEjY0+k1hve0b1zAlYOw==
 
 which-pm-runs@^1.0.0:
   version "1.0.0"

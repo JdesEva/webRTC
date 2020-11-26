@@ -1,6 +1,6 @@
 {
   "name": "web_rtc_sdk",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "web_rtc",
   "main": "/lib/web_rtc_sdk.umd.js",
   "author": "jdeseva",
@@ -53,7 +53,7 @@
   },
   "typings": "index.d.ts",
   "dependencies": {
-    "agora-rtc-sdk-ng": "^4.1.1",
-    "events": "^3.2.0"
+    "events": "^3.2.0",
+    "web_rtc": "^2.0.0"
   }
 }
