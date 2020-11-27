@@ -18,6 +18,7 @@ cButton.onclick = function () {
   console.log(client)
 
   client.on('published-stream', (localVideoTrack, localAudioTrack) => {
+    console.log('published-stream', localVideoTrack, localAudioTrack)
     localVideoTrack.play('local-player')
     localAudioTrack.play()
   })

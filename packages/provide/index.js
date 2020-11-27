@@ -33,7 +33,7 @@ class webRTC extends EventEmitter {
     try {
       this.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack()
       this.localVideoTrack = await AgoraRTC.createCameraVideoTrack()
-      this.localAudioTrack && this.localVideoTrack && this.client.publish([this.localAudioTrack, this.localVideoTrack])
+      this.client.publish([this.localAudioTrack, this.localVideoTrack])
       this.emit('published-stream', this.localVideoTrack, this.localAudioTrack)
     } catch (e) {
       throw new Error(e)
@@ -152,10 +152,10 @@ class webRTC extends EventEmitter {
     try {
       this.localAudioTrack && this.localAudioTrack.stop() && this.localAudioTrack.close()
       this.localVideoTrack && this.localVideoTrack.stop() && this.localVideoTrack.close()
-      this.romoteAudioTrack = []
-      this.romoteVideoTrack = []
       await this.unpublishStream()
       await this.client.leave()
+      this.romoteAudioTrack = []
+      this.romoteVideoTrack = []
     } catch (e) {
       throw new Error(e)
     }
