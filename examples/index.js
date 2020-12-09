@@ -2,7 +2,7 @@ import RTCInstance from '../packages/main'
 
 let client = null
 
-const channel = '1234'
+const channel = '330106001'
 const cButton = document.getElementById('my-button')
 
 cButton.onclick = function () {

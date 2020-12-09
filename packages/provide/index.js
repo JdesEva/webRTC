@@ -106,7 +106,13 @@ class webRTC extends EventEmitter {
     })
 
     this.client.on('user-left', (...args) => {
+      console.log('user-left', ...args)
       this.emit('user-left', ...args)
+    })
+
+    this.client.on('connection-state-change', (...args) => {
+      console.log('connection-state-change', ...args)
+      this.emit('connection-state-change', ...args)
     })
   }
 
